@@ -1,6 +1,9 @@
 import os
 import sys
-from ConfigParser import SafeConfigParser
+try:
+    from ConfigParser import SafeConfigParser
+except ImportError:
+    from configparser import ConfigParser as SafeConfigParser
 
 from bgm.MusicPlayer import MusicPlayer
 from bgm.ProcessService import ProcessService

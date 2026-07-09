@@ -1,7 +1,11 @@
 import os
+import sys
+from types import SimpleNamespace
 from unittest import TestCase
 
-from mock import MagicMock
+from unittest.mock import MagicMock
+
+sys.modules.setdefault("pygame", SimpleNamespace(mixer=MagicMock()))
 
 from bgm.MusicStateMachine import MusicStateMachine, MusicState
 
@@ -211,4 +215,3 @@ class BgmShould(TestCase):
             self.musicPlayer.fade_up_music.assert_not_called()
             self.musicPlayer.fade_down_music.assert_not_called()
             self.musicPlayer.play_song.assert_not_called()
-

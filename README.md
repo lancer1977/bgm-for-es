@@ -1,6 +1,33 @@
 # Background Music for EmulationStation
 A python script to run background music in EmulationStation for Retropie, inspired by the script posted in https://retropie.org.uk/forum/topic/347/background-music-continued-from-help-support, but focusing on a script with well-written code, trying to follow good design practices and putting special attention on testability
 
+## Project Stewardship
+
+`bgm-for-es` packages a Python service for playing background music while
+EmulationStation is running on RetroPie. The service monitors emulator
+processes and fades, pauses, or stops music based on the configured behavior.
+
+### Repository layout
+
+- `bgm/` - Python package containing the player, process service, and state
+  machine.
+- `test/` - unit tests for state transitions and player decisions.
+- `cfg/bgmconfig.ini` - default service configuration.
+- `service/bgm.service` - systemd unit installed by the Debian package.
+- `DEBIAN/`, `stdeb.cfg`, `Makefile` - packaging helpers.
+- `scripts/validate.sh` - local validation entry point used by CI.
+
+### Validation
+
+Run the local validation suite from the repository root:
+
+```bash
+./scripts/validate.sh
+```
+
+The validation runs the Python unit tests without requiring a real RetroPie
+host, EmulationStation process, or pygame audio device.
+
 ## How to install
 
 Enter the RetroPie console (you can reach it by pressing the F4 key when EmulationStation is running) and run the following commands:

@@ -1,6 +1,9 @@
 import random
 import os
-from Queue import LifoQueue
+try:
+    from Queue import LifoQueue
+except ImportError:
+    from queue import LifoQueue
 import time
 
 
